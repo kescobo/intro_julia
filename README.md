@@ -8,6 +8,7 @@ By Kevin Bonham, PhD
 
 ## Additional Resources
 
+- [julia documentation](https://docs.julialang.org/en/stable/)
+- [Julia Discourse](http://discourse.julialang.org) (really, ask your questions!)
 - [Stochastic Lifestyle](http://www.stochasticlifestyle.com/) (Christopher Rakaukas' blog)
 - [Dispatch and Traits](https://white.ucc.asn.au/2018/10/03/Dispatch,-Traits-and-Metaprogramming-Over-Reflection.html) (Lyndan White blog post)
-- [Julia Discourse](http://discourse.julialang.org) (really, ask your questions!)
