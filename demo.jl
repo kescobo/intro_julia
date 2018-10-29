@@ -323,3 +323,34 @@ end
 #
 # This kinda code is common in a fair bit of python code.
 #
+# ## Some basic data wrangling
+#
+# There are a number of ways to work with tabular data in julia.
+# A common package is `DataFrames`.
+
+using DataFrames
+using RDatasets, GLM, Statistics
+
+iris = dataset("datasets", "iris")
+head(iris)
+#-
+unique(iris[:Species])
+#-
+by(iris, :Species) do df
+    DataFrame(
+        Petal_μ = mean(df[:PetalLength]),
+        Petal_σ = std(df[:PetalLength])
+        )
+end
+#-
+
+lm1 = lm(@formula(SepalLength ~ SepalWidth + PetalLength), iris)
+#-
+
+using Plots
+
+scatter(iris[:PetalLength], iris[:PetalWidth], group=iris[:Species],
+    xlabel="Petal Length", legend=:topleft)
+#-
+ylabel!("Petal Width")
+title!("Petal Sizes")
