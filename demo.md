@@ -174,9 +174,10 @@ though there are packages that enable different behavior
 one_d = [1, 2, 3, 0]
 ```
 
-```@example demo; continued = true
+```@example demo
 two_d = [1 10 2 20; # note: newlines aren't actually necessary
          3 30 0 0]
+two_d
 ```
 
 ```@example demo
@@ -423,6 +424,50 @@ In addition, if a user wants to write a new type that uses this method,
 they'd have to modify the original code.
 
 This kinda code is common in a fair bit of python code.
+
+## Some basic data wrangling
+
+There are a number of ways to work with tabular data in julia.
+A common package is `DataFrames`.
+
+```@example demo
+using DataFrames
+using RDatasets, GLM, Statistics
+
+iris = dataset("datasets", "iris")
+head(iris)
+```
+
+```@example demo
+unique(iris[:Species])
+```
+
+```@example demo
+by(iris, :Species) do df
+    DataFrame(
+        Petal_μ = mean(df[:PetalLength]),
+        Petal_σ = std(df[:PetalLength])
+        )
+end
+```
+
+```@example demo
+lm1 = lm(@formula(SepalLength ~ SepalWidth + PetalLength), iris)
+```
+
+```@example demo
+using Plots
+```
+
+```@example demo; continued = true
+scatter(iris[:PetalLength], iris[:PetalWidth], group=iris[:Species],
+    xlabel="Petal Length", legend=:topleft)
+```
+
+```@example demo
+ylabel!("Petal Width")
+title!("Petal Sizes")
+```
 
 *This page was generated using [Literate.jl](https://github.com/fredrikekre/Literate.jl).*
 

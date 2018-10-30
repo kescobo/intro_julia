@@ -131,12 +131,9 @@ foo(2.3, 5)
 
 one_d = [1, 2, 3, 0]
 #-
-two_d = [1 10 2 20; # note: newlines aren't actually necessary
-         3 30 0 0]
+two_d = [1 10 2 20; 3 30 0 0]
 #-
-
 three_d = reshape(collect(1:16), 4,2,2)
-
 # "Dot" syntax can be used for broadcasting,
 # other operators assume matrix operations.
 
@@ -348,7 +345,7 @@ lm1 = lm(@formula(SepalLength ~ SepalWidth + PetalLength), iris)
 #-
 
 using Plots
-
+#-
 scatter(iris[:PetalLength], iris[:PetalWidth], group=iris[:Species],
     xlabel="Petal Length", legend=:topleft)
 #-
